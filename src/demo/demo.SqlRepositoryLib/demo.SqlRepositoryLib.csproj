@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>demo.SqlRepositoryLib</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>demo.SqlRepositoryLib</PackageId>
+    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50;portable-net452+win10</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\..\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\..\bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\RepositoryLib\ChaosCore.RepositoryLib.Abstractions\ChaosCore.RepositoryLib.Abstractions.csproj" />
+    <ProjectReference Include="..\..\RepositoryLib\ChaosCore.RepositoryLib\ChaosCore.RepositoryLib.csproj" />
+    <ProjectReference Include="..\..\Common\ChaosCore.ModelBase\ChaosCore.ModelBase.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Labmem.EntityFrameworkCorePlus" Version="1.0.0-rc3" />
+    <PackageReference Include="Labmem.EntityFrameworkCorePlus.Attributes" Version="1.0.0-rc3" />
+    <PackageReference Include="Labmem.EntityFrameworkCorePlus.SqlServer" Version="1.0.0-rc3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.0.0">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

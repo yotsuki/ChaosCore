@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>ChaosCore.RepositoryLib</AssemblyName>
+    <PackageId>ChaosCore.RepositoryLib</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <Version>1.0.1</Version>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Authors>yotsuki</Authors>
+    <Company />
+    <Description />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\..\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\..\bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ChaosCore.ModelBase\ChaosCore.ModelBase.csproj" />
+    <ProjectReference Include="..\..\Common\ChaosCore.CommonLib\ChaosCore.CommonLib.csproj" />
+    <ProjectReference Include="..\..\Common\ChaosCore.Ioc\ChaosCore.Ioc.csproj" />
+    <ProjectReference Include="..\ChaosCore.RepositoryLib.Abstractions\ChaosCore.RepositoryLib.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>

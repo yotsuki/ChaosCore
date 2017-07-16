@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>ChaosCore.BusinessLib</AssemblyName>
+    <PackageId>ChaosCore.BusinessLib</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <Version>1.0.1</Version>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Description />
+    <Authors>yotsuki</Authors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\..\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\..\bin\Release\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Plugins\**" />
+    <EmbeddedResource Remove="Plugins\**" />
+    <None Remove="Plugins\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ChaosCore.CommonLib\ChaosCore.CommonLib.csproj" />
+    <ProjectReference Include="..\..\RepositoryLib\ChaosCore.RepositoryLib.Abstractions\ChaosCore.RepositoryLib.Abstractions.csproj" />
+    <ProjectReference Include="..\ChaosCore.BusinessLib.Abstractions\ChaosCore.BusinessLib.Abstractions.csproj" />
+    <ProjectReference Include="..\ChaosCore.Interception\ChaosCore.Interception.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\AuthorizationTokenBLL.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AuthorizationTokenBLL.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UserBLL.zh-CN.resx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

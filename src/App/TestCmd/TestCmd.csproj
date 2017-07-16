@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>TestCmd</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>TestCmd</PackageId>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50;portable-net452+win10</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json;ioc.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BusinessLib\ChaosCore.BusinessLib.Abstractions\ChaosCore.BusinessLib.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Common\ChaosCore.ModelBase\ChaosCore.ModelBase.csproj" />
+    <ProjectReference Include="..\..\RepositoryLib\ChaosCore.RepositoryLib.Abstractions\ChaosCore.RepositoryLib.Abstractions.csproj" />
+    <ProjectReference Include="..\..\RepositoryLib\ChaosCore.RepositoryLib\ChaosCore.RepositoryLib.csproj" />
+    <ProjectReference Include="..\..\BusinessLib\ChaosCore.BusinessLib\ChaosCore.BusinessLib.csproj" />
+    <ProjectReference Include="..\..\demo\demo.SqliteRepositoryLib\demo.SqliteRepositoryLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.0.0">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Dora.Interception" Version="1.0.0-beta1" />
+    <PackageReference Include="Dora.Interception.Castle" Version="1.0.0-beta1" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+</Project>
