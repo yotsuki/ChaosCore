@@ -35,7 +35,7 @@ namespace TestCmd
               .AddLogging()
               .AddOptions()
               .AddSingleton<IHostingEnvironment, HostingEnvironment>()
-              .AddJsonIocConfiguration(Path.Combine(AppContext.BaseDirectory, "appsettings.json"))
+              .AddJsonFile(Path.Combine(AppContext.BaseDirectory, "appsettings.json"))
               .AddSingleton(typeof(IIocContext), _ => new IocContext(Path.Combine(AppContext.BaseDirectory, "ioc.json")))
               .AddLocalization(o=>o.ResourcesPath="Resources")
               .ToInterceptable();

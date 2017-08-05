@@ -77,6 +77,7 @@ namespace ChaosCore.BusinessLib
         Result HasEmail(string email);
 
         Result<FunctionTreeNode[]> GetFunctionTree(long userid);
+        Result<FunctionTreeNode[]> GetFunctionTree(string username);
         Result<IEnumerable<User>> GetUsers(QuickQueryModel model);
         Result BatchUpdate(IEnumerable<UpdateModel<long>> updatemodels);
         Result BatchRemove(IEnumerable<long> idlist);

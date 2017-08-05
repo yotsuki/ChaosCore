@@ -14,7 +14,6 @@ namespace ChaosCore.RepositoryLib
         public long UserID { get; set; }
         private Dictionary<DatabaseFacade, IDbContextTransaction> _dicTransaction = null;
         private List<IChaosCoreDbContext> _lstDbContext = new List<IChaosCoreDbContext>();
-        private IsolationLevel _isolationLevel = System.Data.IsolationLevel.ReadCommitted;
         /// <summary>
         /// 获取当前工作单元是否处于事务中
         /// </summary>

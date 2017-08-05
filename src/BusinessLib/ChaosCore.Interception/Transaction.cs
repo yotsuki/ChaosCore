@@ -19,7 +19,7 @@ namespace ChaosCore.Interception
             try {
                 await _next(context);
             } catch (Exception ex) {
-                throw;
+                throw ex;
             }
         }
     }

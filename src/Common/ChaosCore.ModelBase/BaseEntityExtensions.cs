@@ -1,6 +1,7 @@
 ﻿using ChaosCore.CommonLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,6 +23,14 @@ namespace ChaosCore.ModelBase
         public static void SetID(this BaseEntity entity, params object[] ids)
         {
 
+        }
+
+        public static string[] Validation(this BaseEntity entity)
+        {
+            var ctx = new ValidationContext(entity);
+            var results = new List<ValidationResult>();
+            Validator.TryValidateObject(entity, ctx, results);
+            return results.Select(r => r.ErrorMessage).ToArray();
         }
     }
 }

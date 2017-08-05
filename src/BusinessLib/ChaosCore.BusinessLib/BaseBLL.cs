@@ -10,13 +10,16 @@ using ChaosCore.RepositoryLib;
 using Microsoft.Extensions.Localization;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Storage;
+using log4net;
+using log4net.Config;
+using System.IO;
 
 namespace ChaosCore.BusinessLib
 {
     /// <summary>
     /// BLL基类
     /// </summary>
-    public abstract class BaseBLL : IBaseBLL, IDisposable
+    public abstract class BaseBLL : IBaseBLL, IDisposable, IBLLTransaction
     {
         private static IEnumerable<IStringLocalizer> s_CommonLocalizers = null;
         protected IStringLocalizer _localizer;
@@ -271,19 +274,15 @@ namespace ChaosCore.BusinessLib
         private IDbContextTransaction _transaction = null;
         public void BeginTransaction()
         {
-            var tranMgr = ServiceProvider.GetService<IDbContextTransactionManager>();
-            if(tranMgr.CurrentTransaction == null) {
-                _transaction = tranMgr.BeginTransaction();
-            }
+            UnitOfWork.BeginTransaction();
         }
         public void Commit()
         {
-            //if(_transaction != null)
-            _transaction?.Commit();
+            UnitOfWork.CommitTransaction();
         }
         public void Rollback()
         {
-            _transaction?.Rollback();
+            UnitOfWork.RollBackTransaction();
         }
         /// <summary>
         /// 保存实体更改

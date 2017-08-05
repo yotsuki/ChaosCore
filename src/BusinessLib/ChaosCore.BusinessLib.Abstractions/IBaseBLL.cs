@@ -20,6 +20,5 @@ namespace ChaosCore.BusinessLib
     public interface IBaseBLL<TEntity> : IBaseBLL
         where TEntity : BaseEntity
     {
-
     }
 }
