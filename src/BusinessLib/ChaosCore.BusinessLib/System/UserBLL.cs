@@ -436,7 +436,26 @@ namespace ChaosCore.BusinessLib
 
             return result.Final(rootfuncs);
         }
+        public Result<FunctionTreeNode[]> GetFunctionTree(string username)
+        {
+            var result = new Result<FunctionTreeNode[]>();
+            if (string.IsNullOrEmpty(username)) {
+                return result.Failure();
+            }
+            var query = from r in ServiceProvider.GetService<IRepository<Role>>().GetQuery()
+                        from u in r.Users
+                        from fr in r.Functions
+                        where u.User.Name == username && fr.Function.IsMenu
+                        select fr.Function;
+            var functions = query.ToArray();
+            var rootfuncs = functions.Where(f => f.ParentFuncID == 0).Select(f => new FunctionTreeNode(f)).ToArray();
 
+            foreach (var root in rootfuncs) {
+                CreateFunctionTreeNode(root, functions);
+            }
+
+            return result.Final(rootfuncs);
+        }
         public Result<IEnumerable<User>> GetUsers(QuickQueryModel model)
         {
             var result = new Result<IEnumerable<User>>();
