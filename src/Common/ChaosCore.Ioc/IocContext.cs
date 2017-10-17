@@ -44,22 +44,64 @@ namespace ChaosCore.Ioc
 
         public object GetObject(string key)
         {
-            if(_configuration == null || _objectsSection == null) {
+            if (_configuration == null || _objectsSection == null) {
                 return null;
             }
             var section = _objectsSection.GetSection(key);
-            if(section == null) {
+            if (section == null) {
                 return null;
             }
             var obj = section.Get<ObjectModel>();
-            if(obj == null || string.IsNullOrEmpty(obj.TypeName)) {
+            return GetObject(obj);
+        }
+
+        private object GetObject(ObjectModel obj)
+        {
+            if (obj == null || string.IsNullOrEmpty(obj.TypeName)) {
                 return null;
             }
             var type = AssemblyExtension.GetType(obj.TypeName);
-            return Activator.CreateInstance(type);
+            var result = Activator.CreateInstance(type);
+            if (obj.Properties != null && obj.Properties.Any()) {
+                foreach (var pro in obj.Properties) {
+                    object value = null;
+                    if (!string.IsNullOrEmpty(pro.Value.Ref)) {
+                        value = GetObject(pro.Value.Ref);
+                    }else if(pro.Value.Value != null) {
+                        value = GetObject(pro.Value.Value);
+                    }
+                    SetPropertyValue(result, pro.Key, value);
+                }
+            }
+            return result;
         }
-        
+
         public T GetObject<T>(string key)
             => (T)GetObject(key);
+
+        private bool SetPropertyValue(object obj, string propertyName, object value)
+        {
+            if (obj == null) {
+                return false;
+            }
+            var type = obj.GetType();
+            var pi = type.GetTypeInfo().GetProperty(propertyName);
+            if (pi == null) {
+                return false;
+            }
+            if (pi.SetMethod == null || !pi.SetMethod.IsPublic) {
+                return false;
+            }
+            if (value == null) {
+                pi.SetValue(obj, value);
+                return true;
+            }
+            var valuetype = value.GetType();
+            if (valuetype != pi.PropertyType && !pi.PropertyType.GetTypeInfo().IsAssignableFrom(valuetype)) {
+                return false;
+            }
+            pi.SetValue(obj, value);
+            return true;
+        }
     }
 }

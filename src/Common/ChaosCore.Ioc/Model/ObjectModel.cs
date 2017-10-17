@@ -9,6 +9,6 @@ namespace ChaosCore.Ioc
     {
         public string Key { get; set; }
         public string TypeName { get; set; }
-
+        public Dictionary<string, PropertyModel> Properties { get; set; }
     }
 }

@@ -188,7 +188,7 @@ namespace ChaosCore.RepositoryLib
         public virtual IQueryable<TEntity> GetIncludeQuery(params string[] includepath)
         {
             var query = DbSet.AsQueryable();
-            foreach(var path  in includepath) {
+            foreach(var path in includepath) {
                 query = query.Include(path);
             }
             return query;
