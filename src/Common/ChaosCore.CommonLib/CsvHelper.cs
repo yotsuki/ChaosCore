@@ -214,7 +214,6 @@ namespace ChaosCore.CommonLib
                             quotaMode = !quotaMode;
                             continue;
                         }
-                        quotaMode = !quotaMode;
                     }
                 }
 

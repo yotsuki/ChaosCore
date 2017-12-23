@@ -99,7 +99,7 @@ namespace ChaosCore.ModelBase
             :base(code,msg)
         {
         }
-        public Result<TResult> Failure(int code = -1, string errmsg = "")
+        public new Result<TResult> Failure(int code = -1, string errmsg = "")
         {
             this.Code = code;
             this.Message = errmsg;

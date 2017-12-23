@@ -28,6 +28,14 @@ namespace ChaosCore.RepositoryLib
             //DbContextConfigurations = ConnectionConfiguration.GetSection("DbContexts").Get<IDictionary<string, DbContextConfiguration>>();
             
         }
+        private DbContextConfiguration _dbConfiguration = null;
+        public DbContextConfiguration DbConfiguration { get {
+                return _dbConfiguration ?? (_dbConfiguration = GetDbContextConfiguration());
+            }
+            set {
+                _dbConfiguration = value;
+            }
+        }
         protected virtual DbContextConfiguration GetDbContextConfiguration()
         {
             var fullname = $"{GetType().FullName}, {GetType().GetTypeInfo().Assembly.GetName().Name}";
