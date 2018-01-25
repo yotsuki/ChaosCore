@@ -16,17 +16,12 @@ namespace ChaosCore.RepositoryLib
 
     public class ChaosBaseContext: DbContext, IChaosCoreDbContext
     {
-        //private static readonly IConfigurationRoot ConnectionConfiguration = null;
-        //protected static readonly IDictionary<string, DbContextConfiguration> DbContextConfigurations = null;
         static ChaosBaseContext()
         {
-            //var file = new System.IO.FileInfo("appsettings.json");
-            //var fullname = file.FullName;
-            //var builder = new ConfigurationBuilder()
-            //    .AddJsonFile(fullname, optional: true, reloadOnChange: true);
-            //ConnectionConfiguration = builder.Build();
-            //DbContextConfigurations = ConnectionConfiguration.GetSection("DbContexts").Get<IDictionary<string, DbContextConfiguration>>();
-            
+        }
+        public ChaosBaseContext() { }
+        public ChaosBaseContext(IServiceProvider serviceProvider) {
+            this.ServiceProvider = serviceProvider;
         }
         private DbContextConfiguration _dbConfiguration = null;
         public DbContextConfiguration DbConfiguration { get {
@@ -48,7 +43,7 @@ namespace ChaosCore.RepositoryLib
             var dbconfig = ServiceProvider.GetService<IOptions<Dictionary<string, DbContextConfiguration>>>().Value.Values.FirstOrDefault(c => c.TypeName == fullname);
             return dbconfig;
         }
-        public ChaosBaseContext() { }
+        
         public IServiceProvider ServiceProvider { get; set; }
         public string DefaultSchema { get; set; } = "dbo";
         public string SaveMessage { get; set; }

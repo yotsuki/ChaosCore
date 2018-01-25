@@ -9,6 +9,7 @@ namespace ChaosCore.BusinessLib
     public interface IBaseBLL:IDisposable
     {
         long UserID { get; set; }
+        void SetUserID(long id);
         string UserName { get; set; }
         /// <summary>
         /// 用户Session

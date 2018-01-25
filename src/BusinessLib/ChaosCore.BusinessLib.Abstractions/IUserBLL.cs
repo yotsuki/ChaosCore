@@ -1,4 +1,5 @@
 ﻿using ChaosCore.BusinessLib;
+using ChaosCore.Interception.Attributes;
 using ChaosCore.ModelBase;
 using ChaosCore.ModelBase.Model;
 using ChaosCore.ModelBase.Plugins;

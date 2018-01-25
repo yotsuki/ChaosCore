@@ -1,7 +1,5 @@
-﻿using Dora.Interception;
+﻿using Dora.DynamicProxy;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ChaosCore.Interception

@@ -20,9 +20,8 @@ namespace ChaosCore.BusinessLib
     /// <summary>
     /// 用户业务类
     /// </summary>
-    public class UserBLL : BaseBLL<User>, IUserBLL, IInterceptable
+    public class UserBLL : BaseBLL<User>, IUserBLL
     {
-
         public UserBLL(){}
         public UserBLL(IServiceProvider provider):base(provider){
         }
@@ -213,6 +212,7 @@ namespace ChaosCore.BusinessLib
             var user = BllRepository.Find(userid);
             return user;
         }
+        [ErrorLogger("BLL")]
         public virtual Result<User> GetUserFromId(long userid)
         {
             Logger.LogInformation("start get user from {0}", userid);

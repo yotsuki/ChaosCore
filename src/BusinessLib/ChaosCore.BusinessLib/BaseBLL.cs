@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using ChaosCore.CommonLib;
 using ChaosCore.ModelBase;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using ChaosCore.CommonLib;
 using ChaosCore.RepositoryLib;
-using Microsoft.Extensions.Localization;
-using System.Linq;
+using Dora.Interception;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using log4net;
-using log4net.Config;
-using System.IO;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ChaosCore.BusinessLib
 {
     /// <summary>
     /// BLL基类
     /// </summary>
+    [NonInterceptable]
     public abstract class BaseBLL : IBaseBLL, IDisposable, IBLLTransaction
     {
         private static IEnumerable<IStringLocalizer> s_CommonLocalizers = null;
@@ -95,6 +93,11 @@ namespace ChaosCore.BusinessLib
                 _session = value;
             }
         }
+        public void SetUserID(long id)
+        {
+            this.UserID = id;
+        }
+
         public long UserID {
             get {
                 return Session.UserID;
