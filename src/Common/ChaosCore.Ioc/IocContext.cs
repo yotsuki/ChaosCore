@@ -61,6 +61,7 @@ namespace ChaosCore.Ioc
                 return null;
             }
             var type = AssemblyExtension.GetType(obj.TypeName);
+            obj.InstanceType = type;
             var result = Activator.CreateInstance(type);
             if (obj.Properties != null && obj.Properties.Any()) {
                 foreach (var pro in obj.Properties) {

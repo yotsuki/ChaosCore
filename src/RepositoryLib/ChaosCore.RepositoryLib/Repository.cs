@@ -35,13 +35,17 @@ namespace ChaosCore.RepositoryLib
         protected abstract string GetContextName();
         public IChaosCoreDbContext GetContext()
         {
-            return DbStorage.GetByKey(GetContextName());
+            var name = GetContextName();
+            var context = DbStorage.GetByKey(name);
+            context.DbConfiguration = _mapDbContext[name];
+            return context;
         }
 
         protected DbSet<TEntity> GetDbSet<TEntity>()
             where TEntity : BaseEntity
         {
             var context = GetContext();
+            
             foreach (PropertyInfo dbSet in context.GetType().GetProperties().Where(t => t.PropertyType.GetTypeInfo().IsGenericType && t.PropertyType.GetGenericTypeDefinition().Equals(typeof(DbSet<>)))) {
                 Type[] entityType = dbSet.PropertyType.GetGenericArguments();
                 if (typeof(TEntity) == entityType[0]) {

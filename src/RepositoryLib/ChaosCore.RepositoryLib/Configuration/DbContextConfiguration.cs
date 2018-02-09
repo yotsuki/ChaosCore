@@ -3,7 +3,7 @@ using System;
 
 namespace ChaosCore.RepositoryLib
 {
-    public class DbContextConfiguration
+    public class DbContextConfiguration: IDbContextConfiguration
     {
         /// <summary>
         /// 提供器名称

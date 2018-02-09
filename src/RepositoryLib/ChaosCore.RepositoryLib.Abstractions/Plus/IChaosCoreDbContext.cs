@@ -43,5 +43,6 @@ namespace ChaosCore.RepositoryLib
         DbConnection GetDbConnection();
         void AcceptAllChanges();
         void Unchanged<T>(T t) where T : class;
+        IDbContextConfiguration DbConfiguration { get; set; }
     }
 }

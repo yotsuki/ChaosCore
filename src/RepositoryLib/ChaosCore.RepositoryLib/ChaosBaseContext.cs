@@ -23,8 +23,8 @@ namespace ChaosCore.RepositoryLib
         public ChaosBaseContext(IServiceProvider serviceProvider) {
             this.ServiceProvider = serviceProvider;
         }
-        private DbContextConfiguration _dbConfiguration = null;
-        public DbContextConfiguration DbConfiguration { get {
+        private IDbContextConfiguration _dbConfiguration = null;
+        public IDbContextConfiguration DbConfiguration { get {
                 return _dbConfiguration ?? (_dbConfiguration = GetDbContextConfiguration());
             }
             set {

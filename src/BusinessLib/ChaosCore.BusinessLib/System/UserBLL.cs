@@ -78,7 +78,9 @@ namespace ChaosCore.BusinessLib
                 Roles = BllRepository.GetQuery(u => u.ID == user.ID).Select(u => u.Roles).FirstOrDefault(),
                 Password = $"Basic {token.Value.Token}",
             };
-
+            foreach (var ur in newuser.Roles) {
+                ur.User = null;
+            }
             return result.New(newuser);
         }
         public virtual Result<User> LoginByToken(string name, string token)
